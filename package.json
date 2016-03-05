@@ -16,6 +16,7 @@
     "webpack": "1.0.0"
   },
   "dependencies": {
+    "object-assign": "^4.0.1",
     "reqwest": "1.1.6"
   }
 }
