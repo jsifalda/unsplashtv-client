@@ -9,6 +9,10 @@ let pushTemplate = (template) => {
   navigationDocument.presentModal(template)
 }
 
+let popTemplate = (template) => {
+  navigationDocument.dismissModal(template);
+}
+
 App.onLaunch = function(options) {
   getImgUrls((photos) => {
     var showcase = createShowcase({
@@ -37,14 +41,14 @@ App.onLaunch = function(options) {
           let fullscreenPhoto = fullscreen.getElementById('photo');
 
           fullscreenPhoto.addEventListener('select', () => {
-            pushTemplate(showcase);
+            popTemplate(fullscreen);
           });
 
           pushTemplate(fullscreen);
       });
     }
 
-    pushTemplate(showcase)
+    navigationDocument.pushDocument(showcase)
   })
 }
 
