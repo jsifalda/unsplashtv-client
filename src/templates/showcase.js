@@ -1,11 +1,11 @@
 import parseTemplate from '../utils/parseTemplate.js'
 
-let createShowcase = (photos) => {
+let createShowcase = ({photos, title}) => {
 
   let parsedPhotos = (photos || []).map((photo) => {
     return `
       <lockup>
-         <img src="${ photo }" width="453" height="255" />
+         <img src="https://peaceful-dusk-20602.herokuapp.com/${ photo }.jpg" />
       </lockup>
     `
   })
@@ -17,13 +17,13 @@ let createShowcase = (photos) => {
            <img src="${ Array.isArray(photos) ? photos[0] : '' }" />
         </background>
         <banner>
-           <title>Scenes</title>
+           <title>${ title }</title>
            <row>
               <button>
-                 <text>Slideshow</text>
+                 <text>New</text>
               </button>
-              <button>
-                 <text>Screensaver</text>
+              <button id="collections">
+                 <text>Collections</text>
               </button>
            </row>
         </banner>
