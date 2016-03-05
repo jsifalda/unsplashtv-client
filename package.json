@@ -11,5 +11,8 @@
   "devDependencies": {
     "webpack": "1.0.0",
     "babel-loader": "6.2.4"
+  },
+  "dependencies": {
+    "reqwest": "1.1.6"
   }
 }
