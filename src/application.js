@@ -3,15 +3,13 @@ import createShowcase from './templates/showcase.js'
 import createCollections from './templates/collections.js'
 import collectionsController from './controllers/collections.js'
 
-const CLIENT_ID = 'b9288b9e4913497056fbdd1255c0147b6ed3e8e201811f2f3023f6fd5b9e3af0';
-
 let pushTemplate = (template) => {
   navigationDocument.presentModal(template)
 }
 
 App.onLaunch = function(options) {
   // var alert = createAlert('Hello World', 'desc'); //leaving 2nd parameter with an empty string
-  getImgUrls('https://api.unsplash.com/photos?client_id=' + CLIENT_ID, (photos) => {
+  getImgUrls((photos) => {
     var showcase = createShowcase({
       photos,
       title: 'New images'

@@ -1,16 +1,19 @@
-import request from './request.js'
+import api from './api.js'
 
-let getImgUrls = (url, callback) => {
-  request({ url: url }, (err, data) => {
-    let result = data.map((obj) => {
-      let url = obj.urls.regular
-      url = url.substr(0, url.indexOf('?'))
-      let pieces = url.split('/')
-      return pieces[pieces.length - 1].replace('photo-', '')
-    });
+let getImgUrls = (callback) => {
+  api({
+    endpoint: '/photos',
+    callback: (err, data) => {
+      let result = data.map((obj) => {
+        let url = obj.urls.regular
+        url = url.substr(0, url.indexOf('?'))
+        let pieces = url.split('/')
+        return pieces[pieces.length - 1].replace('photo-', '')
+      });
 
-    callback(result);
-  });
+      callback(result);
+    }
+  })
 }
 
 export default getImgUrls
