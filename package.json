@@ -1,0 +1,15 @@
+{
+  "name": "unsplashtv",
+  "version": "1.0.0",
+  "description": "",
+  "main": "wwww/app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jiri Sifalda <sifalda.jiri@gmail.com> (http://jsifalda.name/)",
+  "license": "MIT",
+  "devDependencies": {
+    "webpack": "1.0.0",
+    "babel-loader": "6.2.4"
+  }
+}
