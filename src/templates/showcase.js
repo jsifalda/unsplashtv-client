@@ -14,7 +14,7 @@ let createShowcase = (photos) => {
     <document>
      <showcaseTemplate mode="showcase">
         <background>
-           <img src="path to images on your server/Car_Movie_1920x1080.png" />
+           <img src="${ Array.isArray(photos) ? photos[0] : '' }" />
         </background>
         <banner>
            <title>Scenes</title>
