@@ -1,5 +1,6 @@
 import getImgUrls from './utils/getImgsUrls.js';
-import createShowcase from './templates/showcase.js'
+import createShowcase from './templates/showcase.js';
+import createFullscreen from './templates/fullscreen.js';
 
 const CLIENT_ID = 'b9288b9e4913497056fbdd1255c0147b6ed3e8e201811f2f3023f6fd5b9e3af0';
 
@@ -10,13 +11,39 @@ App.onLaunch = function(options) {
     var showcase = createShowcase({
       photos,
       title: 'test'
-    })
-    let collectionsButton = showcase.getElementById("collections")
+    });
+
+    let collectionsButton = showcase.getElementById('collections')
     collectionsButton.addEventListener('select', () => {
       console.log('tap!!')
     })
-    console.log('f', collectionsButton)
-    navigationDocument.presentModal(showcase)
+
+    let showcasePhotos = showcase.getElementsByTagName('lockup');
+
+    for(var i = 0; i < showcasePhotos.length; i++) {
+      showcasePhotos.item(i).addEventListener('select', (e) => {
+          let el = e.currentTarget;
+          let imgs = el.getElementsByTagName('img');
+
+          let photo;
+
+          for(var i = 0; i < imgs.length; i++) {
+            photo = imgs.item(i).getAttribute('src');
+          }
+
+          let fullscreen = createFullscreen(photo);
+          let fullscreenPhoto = fullscreen.getElementById('photo');
+
+          fullscreenPhoto.addEventListener('select', () => {
+            navigationDocument.presentModal(showcase);
+          });
+
+          navigationDocument.presentModal(fullscreen);
+      });
+    }
+
+    console.log('f', collectionsButton);
+    navigationDocument.presentModal(showcase);
   })
 }
 
