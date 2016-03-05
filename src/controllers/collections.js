@@ -1,14 +1,19 @@
 import api from '../utils/api.js';
+import getImgUrls from '../utils/getImgsUrls.js'
 import createCollections from '../templates/collections.js'
-
+import assign from 'object-assign'
 export default (render) => {
-  let template = createCollections()
-
   api({
     endpoint: '/collections',
-    callback: (collections) => {
-      console.log('co', collections)
+    callback: (err, collections) => {
 
+      collections = collections.map((collection) => {
+        return assign({}, collection, {
+          photoId: getImgUrls(collection, 'cover_photo')
+        })
+      })
+
+      let template = createCollections(collections)
       render(template)
     }
   })

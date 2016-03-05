@@ -1,6 +1,15 @@
 import parseTemplate from '../utils/parseTemplate.js'
 
-let createCollections = () => {
+let createCollections = (collections) => {
+  let parsedCollections = (collections || []).map((collection) => {
+    return `<lockup>
+       <img src="https://peaceful-dusk-20602.herokuapp.com/${ collection.photoId }.jpg" width="250" height="376" />
+       <title>${ collection.title }</title>
+    </lockup>`
+  })
+
+  console.log('parsed', parsedCollections)
+
   let template = `<?xml version="1.0" encoding="UTF-8" ?>
   <document>
      <catalogTemplate>
@@ -15,30 +24,7 @@ let createCollections = () => {
                  <relatedContent>
                     <grid>
                        <section>
-                          <lockup>
-                             <img src="path to images on your server/Car_Movie_250x375_A.png" width="250" height="376" />
-                             <title>Movie 1</title>
-                          </lockup>
-                          <lockup>
-                             <img src="path to images on your server/Car_Movie_250x375_B.png" width="250" height="376" />
-                             <title>Movie 2</title>
-                          </lockup>
-                          <lockup>
-                             <img src="path to images on your server/Car_Movie_250x375_C.png" width="250" height="376" />
-                             <title>Movie 3</title>
-                          </lockup>
-                          <lockup>
-                             <img src="path to images on your server/Car_Movie_250x375.png" width="250" height="376" />
-                             <title>Movie 4</title>
-                          </lockup>
-                          <lockup>
-                             <img src="path to images on your server/Car_Movie_250x375_C.png" width="250" height="376" />
-                             <title>Movie 5</title>
-                          </lockup>
-                          <lockup>
-                             <img src="path to images on your server/Car_Movie_250x375.png" width="250" height="376" />
-                             <title>Movie 6</title>
-                          </lockup>
+                          ${ parsedCollections.join('') }
                        </section>
                     </grid>
                  </relatedContent>
