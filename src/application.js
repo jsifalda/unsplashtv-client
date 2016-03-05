@@ -1,3 +1,5 @@
+import createShowcase from './templates/showcase.js'
+
 const CLIENT_ID = 'b9288b9e4913497056fbdd1255c0147b6ed3e8e201811f2f3023f6fd5b9e3af0';
 
 // jsonRequest({
@@ -12,51 +14,6 @@ App.onLaunch = function(options) {
   // var alert = createAlert('Hello World', 'desc'); //leaving 2nd parameter with an empty string
   var showcase = createShowcase()
   navigationDocument.presentModal(showcase);
-}
-
-let createShowcase = (photos) => {
-
-  let parsedPhotos = (photos || []).map((photo) => {
-    return `
-      <lockup>
-         <img src="${ photo }" width="453" height="255" />
-      </lockup>
-    `
-  })
-
-  let template = `<?xml version="1.0" encoding="UTF-8" ?>
-    <document>
-     <showcaseTemplate mode="showcase">
-        <background>
-           <img src="path to images on your server/Car_Movie_1920x1080.png" />
-        </background>
-        <banner>
-           <title>Scenes</title>
-           <row>
-              <button>
-                 <text>Slideshow</text>
-              </button>
-              <button>
-                 <text>Screensaver</text>
-              </button>
-           </row>
-        </banner>
-        <carousel>
-           <section>
-              ${ parsedPhotos.join('') }
-           </section>
-        </carousel>
-     </showcaseTemplate>
-  </document>
-  `
-
-  return parseTemplate(template)
-}
-
-let parseTemplate = (template) => {
-  var parser = new DOMParser();
-  var alertDoc = parser.parseFromString(template, 'application/xml');
-  return alertDoc
 }
 
 // 2
