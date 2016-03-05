@@ -14,7 +14,15 @@ App.onLaunch = function(options) {
   navigationDocument.presentModal(showcase);
 }
 
-let createShowcase = () => {
+let createShowcase = (photos) => {
+
+  let parsedPhotos = (photos || []).map((photo) => {
+    return `
+      <lockup>
+         <img src="${ photo }" width="453" height="255" />
+      </lockup>
+    `
+  })
 
   let template = `<?xml version="1.0" encoding="UTF-8" ?>
     <document>
@@ -35,22 +43,7 @@ let createShowcase = () => {
         </banner>
         <carousel>
            <section>
-              <lockup>
-                 <img src="path to images on your server/Car_Movie_453x255_C.png" width="453" height="255" />
-                 <title>Scene 1</title>
-              </lockup>
-              <lockup>
-                <img src="path to images on your server/Car_Movie_500x600.png" width="500" height="600" />
-                <title>Scene 2</title>
-              </lockup>
-              <lockup>
-                 <img src="path to images on your server/Car_Movie_308x308_B.png" width="308" height="308" />
-                 <title>Scene 3</title>
-              </lockup>
-              <lockup>
-                 <img src="path to images on your server/Car_Movie_800x600.png" width="800" height="600" />
-                 <title>Scene 4</title>
-              </lockup>
+              ${ parsedPhotos.join('') }
            </section>
         </carousel>
      </showcaseTemplate>
