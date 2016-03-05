@@ -1,5 +1,3 @@
-
-
 App.onLaunch = function(options) {
   // 1
   var alert = createAlert("Hello World", "desc"); //leaving 2nd parameter with an empty string
